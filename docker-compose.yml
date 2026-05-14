@@ -1,0 +1,16 @@
+name: Example-Fronted-Github-Action
+services:
+  frontend:
+    image: hugonaing/example-frontend
+    container_name: frontend
+    ports:
+      - "5001:5001"
+    environment:
+      - REACT_APP_BACKEND_URL=http://localhost:8080
+  watchtower:
+    image: nickfedor/watchtower
+    environment:
+      -  WATCHTOWER_POLL_INTERVAL=60 # Poll every 60 seconds
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    container_name: watchtower

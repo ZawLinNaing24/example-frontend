@@ -1,0 +1,19 @@
+name: Deploy to Cloud
+
+on:
+  push:
+    branches: main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # ဥပမာ- Render အတွက် သုံးတဲ့ Deploy Action
+      - name: Deploy to Production
+        uses: johnbeynon/render-deploy-action@v0.0.8
+        with:
+          service-id: ${{ secrets.RENDER_SERVICE_ID }} # Cloud ကပေးတဲ့ Service ID
+          api-key: ${{ secrets.RENDER_API_KEY }}
